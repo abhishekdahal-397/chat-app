@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const People = () => {
 	return (
-		<div className="bg-white h-full rounded">
+		<div className="bg-blue-500 h-full rounded">
 			<span className="font-bold ml-5 my-11 text-[5vh]">People</span>
 			<p className="ml-5 my-2 opacity-30">Active contacts (11)</p>
 
