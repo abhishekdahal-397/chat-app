@@ -1,35 +1,33 @@
-// pages/api/register.ts
-import { NextApiRequest, NextApiResponse } from "next";
-import connectToDatabase from "../../../lib/dbConnect";
-import User from "../../../models/user";
+import connectDB from "@/lib/dbConnect";
+import User from "@/models/user";
+
 import bcrypt from "bcrypt";
-export default async function handler(
-	req: NextApiRequest,
-	res: NextApiResponse
-) {
-	if (req.method === "POST") {
-		const { username, email, password } = req.body;
+import { NextResponse } from "next/server";
 
-		// Connect to MongoDB
-		await connectToDatabase();
+export const POST = async (req: Request) => {
+	const { username, email, password } = await req.json();
 
-		// Check if user already exists
-		const existingUser = await User.findOne({ email });
-		if (existingUser) {
-			return res.status(400).json({ error: "User already exists" });
-		}
+	// DB
+	await connectDB();
 
-		// Hash password
-		const hashedPassword = await bcrypt.hash(password, 10);
-
-		// Create new user
-		const newUser = new User({ username, email, password: hashedPassword });
-		await newUser.save();
-
-		// Return success response
-		return res.status(200).json({ message: "Registration successful" });
-	} else {
-		// Method not allowed
-		return res.status(405).end();
+	const existingUser = await User.findOne({ email });
+	if (existingUser) {
+		return new NextResponse("Email is already in use", { status: 400 });
 	}
-}
+
+	const hashedPassword = await bcrypt.hash(password, 5);
+	const newUser = new User({
+		username,
+		email,
+		password: hashedPassword,
+	});
+
+	try {
+		await newUser.save();
+		return new NextResponse("User is registered", { status: 200 });
+	} catch (error) {
+		return new NextResponse(`${error}`, {
+			status: 500,
+		});
+	}
+};
