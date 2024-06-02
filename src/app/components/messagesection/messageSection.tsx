@@ -15,7 +15,7 @@ const MessageSection = () => {
 			<div className="h-[10vh] relative flex items-center  bg-pink-400  ">
 				<div className="flex w-[15vw] h-[4vw]">
 					<Avatar className=" mx-5 self-center ">
-						<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+						<AvatarImage src="" alt="@shadcn" />
 						<AvatarFallback>CN</AvatarFallback>
 					</Avatar>
 					<p className="whitespace-nowrap relative top-2 right-4">

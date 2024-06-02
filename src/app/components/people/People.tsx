@@ -9,35 +9,35 @@ export const People = () => {
 
 			<div className="w-[23vw] px-3 py-1 select-none transition-ease duration-300 rounded hover:bg-gray-200  cursor-pointer  mt-7 ml-5 flex">
 				<Avatar>
-					<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+					<AvatarImage src="" alt="@shadcn" />
 					<AvatarFallback>CN</AvatarFallback>
 				</Avatar>
 				<p className="relative top-2 left-4">Abhishek Dahal</p>
 			</div>
 			<div className="w-[23vw] px-3 py-1 select-none transition-ease duration-300 rounded hover:bg-gray-200  cursor-pointer  mt-7 ml-5 flex">
 				<Avatar>
-					<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+					<AvatarImage src="" alt="@shadcn" />
 					<AvatarFallback>CN</AvatarFallback>
 				</Avatar>
 				<p className="relative top-2 left-4">Abhishek Dahal</p>
 			</div>
 			<div className="w-[23vw] px-3 py-1 select-none transition-ease duration-300 rounded hover:bg-gray-200  cursor-pointer  mt-7 ml-5 flex">
 				<Avatar>
-					<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+					<AvatarImage src="" alt="@shadcn" />
 					<AvatarFallback>CN</AvatarFallback>
 				</Avatar>
 				<p className="relative top-2 left-4">Abhishek Dahal</p>
 			</div>
 			<div className="w-[23vw] px-3 py-1 select-none transition-ease duration-300 rounded hover:bg-gray-200  cursor-pointer  mt-7 ml-5 flex">
 				<Avatar>
-					<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+					<AvatarImage src="" alt="@shadcn" />
 					<AvatarFallback>CN</AvatarFallback>
 				</Avatar>
 				<p className="relative top-2 left-4">Abhishek Dahal</p>
 			</div>
 			<div className="w-[23vw] px-3 py-1 select-none transition-ease duration-300 rounded hover:bg-gray-200  cursor-pointer  mt-7 ml-5 flex">
 				<Avatar>
-					<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+					<AvatarImage src="" alt="@shadcn" />
 					<AvatarFallback>CN</AvatarFallback>
 				</Avatar>
 				<p className="relative top-2 left-4">Abhishek Dahal</p>
