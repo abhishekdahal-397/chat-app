@@ -1,24 +1,41 @@
 "use client";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
-	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+	const router = useRouter();
 
-	const handleSubmit = (e: any) => {
+	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 
-		// Implement login logic here, e.g., API call, form validation
-		// For demonstration purposes, simulating successful login:
-		setUsername("");
-		setPassword("");
-		setErrorMessage("");
+		try {
+			const response = await fetch("/api/loginapi", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ email, password }),
+			});
+			if (!response.ok) {
+				const errorText = await response.text();
+				setErrorMessage(errorText);
+				return;
+			}
 
-		// Alert for successful login (replace with actual redirection)
-		alert("Login successful!");
+			// Clear form fields and error message
+			setEmail("");
+			setPassword("");
+			setErrorMessage("");
+
+			// Redirect to the desired page after successful login
+			router.push("/mainpage"); // Change this to the appropriate route
+		} catch (error) {
+			setErrorMessage("An error occurred. Please try again.");
+		}
 	};
-
 	return (
 		<div className="flex min-h-screen items-center justify-center bg-gray-100">
 			<div className="w-full max-w-md p-4 bg-white rounded-lg shadow-md">
@@ -41,8 +58,8 @@ const LoginForm = () => {
 							id="username"
 							type="text"
 							placeholder="Enter username"
-							value={username}
-							onChange={(e) => setUsername(e.target.value)}
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
 						/>
 					</div>
 					<div className="mb-6">

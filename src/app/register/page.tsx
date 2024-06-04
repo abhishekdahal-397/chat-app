@@ -1,27 +1,51 @@
 "use client";
 
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { FormEvent, useState } from "react";
 
 const RegistrationForm = () => {
-	const [username, setUsername] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
-	const [errorMessage, setErrorMessage] = useState("");
-
-	const handleSubmit = (event: any) => {
+	const [username, setUsername] = useState<string>("");
+	const [email, setEmail] = useState<string>("");
+	const [password, setPassword] = useState<string>("");
+	const [confirmPassword, setConfirmPassword] = useState<string>("");
+	const [errorMessage, setErrorMessage] = useState<string>("");
+	const router = useRouter();
+	const handleSubmit = async (event: FormEvent) => {
 		event.preventDefault();
 
-		// Implement registration logic here, e.g., API call, form validation
-		// For demonstration purposes, simulating successful registration:
-		setUsername("");
-		setEmail("");
-		setPassword("");
-		setConfirmPassword("");
-		setErrorMessage("");
+		if (password !== confirmPassword) {
+			setErrorMessage("Passwords do not match");
+			return;
+		}
 
-		// Alert for successful registration (replace with actual redirection)
-		alert("Registration successful!");
+		try {
+			const response = await fetch("/api/register", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ username, email, password }),
+			});
+
+			if (!response.ok) {
+				const errorText = await response.text();
+				setErrorMessage(errorText);
+				return;
+			} else {
+				console.log(response);
+				router.push("/login");
+			}
+
+			setUsername("");
+			setEmail("");
+			setPassword("");
+			setConfirmPassword("");
+			setErrorMessage("");
+
+			alert("Registration successful!");
+		} catch (error) {
+			setErrorMessage("An error occurred. Please try again.");
+		}
 	};
 
 	return (

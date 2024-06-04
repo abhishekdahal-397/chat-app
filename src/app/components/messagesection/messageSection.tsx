@@ -12,18 +12,16 @@ import { Input } from "@/components/ui/input";
 const MessageSection = () => {
 	return (
 		<div>
-			<div className="h-[10vh] relative flex items-center  bg-pink-400  ">
-				<div className="flex w-[15vw] h-[4vw]">
-					<Avatar className=" mx-5 self-center ">
+			<div className="h-[10vh] relative flex items-center  bg-pink-400 pb-4 ">
+				<div className="flex items-center ml-4 px-4 py-2 mt-4 rounded">
+					<Avatar className="bg-gray-200">
 						<AvatarImage src="" alt="@shadcn" />
 						<AvatarFallback>CN</AvatarFallback>
 					</Avatar>
-					<p className="whitespace-nowrap relative top-2 right-4">
-						Elanor Hughes
-					</p>
-					<span className="relative right-[9vw] top-[2vw] whitespace-nowrap ">
-						Active now
-					</span>
+					<div className="ml-[10px]">
+						<p className="block m-0 text-2xl relative top-2 ">Abhishek Dahal</p>
+						<p className="m-0 opacity-40">Active now</p>
+					</div>
 				</div>
 				<div className="flex  w-[20vw] h-[8vh] items-center justify-center absolute right-2">
 					<div className=" flex items-center justify-center hover:bg-slate-500 rounded h-[7vh] w-[4vw] ">
