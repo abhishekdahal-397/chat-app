@@ -1,7 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
+interface User {
+	id: number;
+	name: string;
+	email: string;
+}
 export const People = () => {
+	const [users, setUsers] = useState<User[]>([]);
+	const [currentUser, setCurrentUser] = useState("");
+
+	useEffect(() => {
+		const fetchUsers = async () => {
+			try {
+				const response = await fetch("/api/users"); // Assuming your backend API endpoint is '/api/users'
+				if (response.ok) {
+					const data = await response.json();
+					setUsers(data);
+					console.log(data);
+				} else {
+					console.error("Failed to fetch users");
+				}
+			} catch (error) {
+				console.error("Error fetching users:", error);
+			}
+		};
+
+		fetchUsers();
+	}, []);
+
 	return (
 		<div className="bg-blue-500 h-full rounded">
 			<span className="font-bold ml-5 my-11 text-[5vh]">People</span>

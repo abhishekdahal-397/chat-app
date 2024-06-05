@@ -35,8 +35,14 @@ const MessageSection = () => {
 					</div>
 				</div>
 			</div>
-			<div className="Midsection h-[81vh] rounded mb-4vh bg-white w-full">
+			<div className="Midsection h-[81vh] rounded mb-4vh  bg-red-600 w-full px-6">
 				{" "}
+				<div className=" flex justify-end my-3 w-full h-6 bg-blue-500">
+					<p className="h-6 w-[3.5rem] ">hi</p>
+				</div>
+				<div className="flex justify-start my-3 w-full h-6 bg-pink-700">
+					<p className="h-6 w-[3.5rem]  ">hello</p>
+				</div>
 			</div>
 			<div className="flex items-center ">
 				<div className="h-[5vh] w-[6vh] rounded  flex items-center justify-center">
