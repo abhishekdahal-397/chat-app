@@ -9,6 +9,5 @@ export const POST = async (req: Request) => {
 		expires: new Date(0), // Set the cookie to expire in the past
 		path: "/",
 	});
-
 	return response;
 };

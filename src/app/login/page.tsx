@@ -1,8 +1,10 @@
 "use client";
 import React, { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useUser } from "../Context/UserContext";
 
-const LoginForm = () => {
+const LoginForm: React.FC = () => {
+	const { dispatch } = useUser();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
@@ -19,11 +21,16 @@ const LoginForm = () => {
 				},
 				body: JSON.stringify({ email, password }),
 			});
+
+			const data = await response.json();
+
 			if (!response.ok) {
-				const errorText = await response.text();
-				setErrorMessage(errorText);
+				setErrorMessage(data.error || "An error occurred. Please try again.");
 				return;
 			}
+
+			// Dispatch the LOGIN_SUCCESS action to update user state
+			dispatch({ type: "LOGIN_SUCCESS", payload: data.user });
 
 			// Clear form fields and error message
 			setEmail("");
@@ -31,11 +38,12 @@ const LoginForm = () => {
 			setErrorMessage("");
 
 			// Redirect to the desired page after successful login
-			router.push("/mainpage"); // Change this to the appropriate route
+			router.push("/mainpage");
 		} catch (error) {
 			setErrorMessage("An error occurred. Please try again.");
 		}
 	};
+
 	return (
 		<div className="flex min-h-screen items-center justify-center bg-gray-100">
 			<div className="w-full max-w-md p-4 bg-white rounded-lg shadow-md">
